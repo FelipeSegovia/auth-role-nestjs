@@ -6,6 +6,7 @@ import {
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './entity/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
+import { Role } from '../roles/entities/role.entity';
 
 @Injectable()
 export class UserService {
@@ -16,7 +17,10 @@ export class UserService {
       where: {
         email,
       },
+      include: { model: Role, through: { attributes: [] } },
     });
+
+    console.log('User:', user);
 
     if (!user)
       throw new NotFoundException(`User with email ${email} not found`);

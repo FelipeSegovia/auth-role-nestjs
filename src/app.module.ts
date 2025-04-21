@@ -4,6 +4,7 @@ import { configValidationSchema } from './config/env.validation';
 import { UserModule } from './features/user/user.module';
 import { AuthModule } from './features/auth/auth.module';
 import { DatabaseModule } from './database/database.module';
+import { RolesModule } from './features/roles/roles.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { DatabaseModule } from './database/database.module';
     UserModule,
     DatabaseModule,
     AuthModule,
+    RolesModule,
   ],
   controllers: [],
   providers: [],

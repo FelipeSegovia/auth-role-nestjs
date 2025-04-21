@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
       // Verifica si el token del cliente es igual al secret
       // Luego Inyecta el usuario, ahora el request tiene una propiedad
       // user que posee el payload
-      request['user'] = await this.jwtService.verifyAsync(token, {
+      request.user = await this.jwtService.verifyAsync(token, {
         secret: this.configService.get('JWT_SECRET_KEY'),
       });
     } catch {

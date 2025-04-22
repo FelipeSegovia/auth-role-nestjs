@@ -4,7 +4,9 @@ import { CreateRoleDto } from './dto/create-role.dto';
 import { Roles } from 'src/decorators/roles.decorator';
 import { RolesGuard } from 'src/guard/roles.guard';
 import { AuthGuard } from 'src/guard/auth.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Roles')
 @Controller('roles')
 export class RolesController {
   constructor(private rolesService: RolesService) {}
@@ -18,6 +20,7 @@ export class RolesController {
 
   @Get()
   @UseGuards(AuthGuard, RolesGuard)
+  @ApiBearerAuth()
   @Roles('admin', 'manager')
   getAll() {
     return this.rolesService.getAllRoles();
